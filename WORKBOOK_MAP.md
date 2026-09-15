@@ -22,7 +22,7 @@ Source: `01-185021-IESVE-ENERGY-MODEL-CALCULATIONS.xlsm` (preserved outside this
 | Selected Space Requirements | Lighting, Misc, Exhaust, Transfer |
 | Airside Equipment | Airside, Psych |
 | Plantside Equipment | Plantside |
-| Energy | Energy |
+| Energy | Energy; Proposed and 000°, 090°, 180°, and 270° baseline views |
 | Input Tables | Inputs, ASHRAE, Water |
 
 ## Current Boundary

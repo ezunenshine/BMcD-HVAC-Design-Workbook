@@ -5,16 +5,17 @@ import json
 
 
 BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
 
 
 class AppHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         if self.path == "/":
-            self.path = "/static/index.html"
+            self.path = "/index.html"
         elif self.path == "/version":
             version = max(
                 path.stat().st_mtime_ns
-                for path in (BASE_DIR / "static").iterdir()
+                for path in STATIC_DIR.iterdir()
                 if path.is_file()
             )
             payload = json.dumps({"version": version}).encode()
@@ -38,9 +39,9 @@ class AppHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    os.chdir(BASE_DIR)
+    os.chdir(STATIC_DIR)
     server = ThreadingHTTPServer(("127.0.0.1", 8000), AppHandler)
-    print("HVAC Calculation Studio running at http://127.0.0.1:8000")
+    print("HVAC Design Workbook running at http://127.0.0.1:8000")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HVAC Calculation Studio</title>
-  <link rel="stylesheet" href="/static/styles.css">
+  <title>HVAC Design Workbook</title>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div class="brand-mark" aria-hidden="true">HC</div>
+      <img class="brand-mark" src="./burns-mcdonnell-heritage-badge.png" alt="">
       <div class="brand-copy">
-        <strong>HVAC Calculation Studio</strong>
-        <span>01-185021 · IESVE energy model calculations</span>
+        <strong>HVAC Design Workbook</strong>
+        <span>Burns &amp; McDonnell Design Team</span>
       </div>
       <div class="topbar-actions">
         <span class="status"><span class="status-dot"></span>Workbook mapped</span>
@@ -56,15 +56,18 @@
           <button type="button" class="secondary-action" disabled>Calculation pending</button>
         </div>
 
-        <div class="empty-state">
-          <div class="empty-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="empty-state" id="module-content">
+          <img class="workspace-seal" src="./burns-mcdonnell-heritage-badge.png" alt="">
+          <div class="empty-symbol" aria-hidden="true"><img src="./burns-mcdonnell-ampersand.png" alt=""></div>
           <h3 id="empty-title">Ready for workbook logic</h3>
           <p id="empty-copy">The navigation and source mapping are in place. Inputs, equations, units, validation, and Excel parity tests will be added in the next migration increment.</p>
+          <div class="summary-links" id="summary-links" hidden></div>
         </div>
       </section>
 
       <footer class="workspace-footer">
-        Engineering aid · Results require review and acceptance by a qualified HVAC professional.
+        <span>Engineering aid · Results require review and acceptance by a qualified HVAC professional.</span>
+        <img src="./burns-mcdonnell-horizontal.png" alt="Burns &amp; McDonnell">
       </footer>
     </main>
 
@@ -72,15 +75,20 @@
     <aside class="project-browser" id="project-browser" aria-label="Project browser">
       <div class="browser-header">
         <div class="browser-brand">
-          <div class="browser-logo" aria-hidden="true">EM</div>
-          <div><strong>Energy Model</strong><span>Design workspace</span></div>
+          <img class="browser-logo" src="./burns-mcdonnell-horizontal.png" alt="Burns &amp; McDonnell">
+          <div><strong>HVAC Design Workbook</strong><span>Burns &amp; McDonnell Design Team</span></div>
         </div>
         <button class="icon-button close-button" id="close-browser" type="button" aria-label="Close project browser" title="Close project browser">×</button>
       </div>
 
       <div class="active-project">
         <span>ACTIVE PROJECT</span>
-        <div><strong>185021</strong><small>IESVE Energy Model</small></div>
+        <div class="project-fields">
+          <label><span>Project Number</span><input data-project-field="number" value="185021"></label>
+          <label><span>Project Name</span><input data-project-field="name" value="IESVE Energy Model"></label>
+          <label><span>Submittal</span><input data-project-field="submittal" placeholder="Enter submittal"></label>
+          <label><span>Submittal Date</span><input data-project-field="date" type="date"></label>
+        </div>
       </div>
 
       <p class="browser-label">PROJECT BROWSER</p>
@@ -98,6 +106,6 @@
       </div>
     </aside>
   </div>
-  <script src="/static/app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
