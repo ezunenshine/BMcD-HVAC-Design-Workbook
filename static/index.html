@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HVAC Calculation Studio</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">HC</div>
+      <div class="brand-copy">
+        <strong>HVAC Calculation Studio</strong>
+        <span>01-185021 · IESVE energy model calculations</span>
+      </div>
+      <div class="topbar-actions">
+        <span class="status"><span class="status-dot"></span>Workbook mapped</span>
+        <button class="icon-button menu-button" id="open-browser" type="button" aria-label="Open project browser" title="Open project browser">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="workspace" id="workspace">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <span id="crumb-group">Space Calculations</span>
+        <span aria-hidden="true">/</span>
+        <strong id="crumb-page">Space Condition Setpoints</strong>
+      </nav>
+
+      <section class="page-heading">
+        <div>
+          <p class="eyebrow" id="page-kicker">SPACE CALCULATIONS</p>
+          <h1 id="page-title">Space Condition Setpoints</h1>
+          <p id="page-description">Define occupied heating, cooling, humidity, and setback criteria for each space condition.</p>
+        </div>
+        <div class="source-badge">
+          <span>Workbook source</span>
+          <strong id="source-sheet">Inputs → Calc</strong>
+        </div>
+      </section>
+
+      <section class="summary-strip" aria-label="Migration status">
+        <div><span>Module status</span><strong>Structure ready</strong></div>
+        <div><span>Calculation parity</span><strong>Not tested</strong></div>
+        <div><span>Workbook revision</span><strong>Source preserved</strong></div>
+      </section>
+
+      <section class="work-area">
+        <div class="work-header">
+          <div>
+            <p class="section-label">CURRENT MODULE</p>
+            <h2 id="module-heading">Setpoint schedule</h2>
+          </div>
+          <button type="button" class="secondary-action" disabled>Calculation pending</button>
+        </div>
+
+        <div class="empty-state">
+          <div class="empty-symbol" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h3 id="empty-title">Ready for workbook logic</h3>
+          <p id="empty-copy">The navigation and source mapping are in place. Inputs, equations, units, validation, and Excel parity tests will be added in the next migration increment.</p>
+        </div>
+      </section>
+
+      <footer class="workspace-footer">
+        Engineering aid · Results require review and acceptance by a qualified HVAC professional.
+      </footer>
+    </main>
+
+    <div class="drawer-scrim" id="drawer-scrim"></div>
+    <aside class="project-browser" id="project-browser" aria-label="Project browser">
+      <div class="browser-header">
+        <div class="browser-brand">
+          <div class="browser-logo" aria-hidden="true">EM</div>
+          <div><strong>Energy Model</strong><span>Design workspace</span></div>
+        </div>
+        <button class="icon-button close-button" id="close-browser" type="button" aria-label="Close project browser" title="Close project browser">×</button>
+      </div>
+
+      <div class="active-project">
+        <span>ACTIVE PROJECT</span>
+        <div><strong>185021</strong><small>IESVE Energy Model</small></div>
+      </div>
+
+      <p class="browser-label">PROJECT BROWSER</p>
+
+      <label class="search-box">
+        <span aria-hidden="true"></span>
+        <input id="browser-search" type="search" placeholder="Find a calculation" autocomplete="off">
+      </label>
+
+      <nav class="tree" id="project-tree" aria-label="Workbook modules"></nav>
+
+      <div class="browser-footer">
+        <span>17 source worksheets</span>
+        <span>Map v0.1</span>
+      </div>
+    </aside>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
