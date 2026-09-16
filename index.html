@@ -1,99 +1,114 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HVAC Design Workbook</title>
-  <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <div class="app-shell">
-    <header class="topbar">
-      <img class="project-mark" src="./burns-mcdonnell-ampersand-midnight.png" alt="">
-      <div class="top-project-fields" aria-label="Active project information">
-        <label class="project-name-field"><span>Project Name</span><input data-project-field="name" value="IESVE Energy Model"></label>
-        <label><span>Project Number</span><input data-project-field="number" value="185021"></label>
-        <label><span>Submittal</span><input data-project-field="submittal" placeholder="Enter submittal"></label>
-        <label><span>Submittal Date</span><input data-project-field="date" type="date"></label>
-      </div>
-      <div class="topbar-actions">
-        <button class="icon-button menu-button" id="open-browser" type="button" aria-label="Open project browser" title="Open project browser">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </header>
-
-    <main class="workspace" id="workspace">
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <span id="crumb-group">Space Calculations</span>
-        <span aria-hidden="true">/</span>
-        <strong id="crumb-page">Space Condition Setpoints</strong>
-      </nav>
-
-      <section class="page-heading">
-        <div>
-          <p class="eyebrow" id="page-kicker">SPACE CALCULATIONS</p>
-          <h1 id="page-title">Space Condition Setpoints</h1>
-          <p id="page-description">Define occupied heating, cooling, humidity, and setback criteria for each space condition.</p>
-        </div>
-        <div class="source-badge">
-          <span>Workbook source</span>
-          <strong id="source-sheet">Inputs → Calc</strong>
-        </div>
-      </section>
-
-      <section class="summary-strip" aria-label="Migration status">
-        <div><span>Module status</span><strong>Structure ready</strong></div>
-        <div><span>Calculation parity</span><strong>Not tested</strong></div>
-        <div><span>Workbook revision</span><strong>Source preserved</strong></div>
-      </section>
-
-      <section class="work-area">
-        <div class="work-header">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#07192d">
+    <title>IESVE Energy Model | Independent Tables</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand-lockup">
+          <div class="brand-mark">EM</div>
           <div>
-            <p class="section-label">CURRENT MODULE</p>
-            <h2 id="module-heading">Setpoint schedule</h2>
+            <strong>Energy Model</strong>
+            <span>Design workspace</span>
           </div>
-          <button type="button" class="secondary-action" disabled>Calculation pending</button>
+          <button class="icon-button sidebar-close" id="sidebarClose" aria-label="Close navigation" title="Close navigation">
+            <span class="chevron left"></span>
+          </button>
         </div>
 
-        <div class="empty-state" id="module-content">
-          <img class="workspace-seal" src="./burns-mcdonnell-heritage-badge.png" alt="">
-          <div class="empty-symbol" aria-hidden="true"><img src="./burns-mcdonnell-ampersand.png" alt=""></div>
-          <h3 id="empty-title">Ready for workbook logic</h3>
-          <p id="empty-copy">The navigation and source mapping are in place. Inputs, equations, units, validation, and Excel parity tests will be added in the next migration increment.</p>
-          <div class="summary-links" id="summary-links" hidden></div>
+        <section class="project-card" aria-label="Active project">
+          <span>Active project</span>
+          <strong>185021</strong>
+          <small>IESVE Energy Model</small>
+        </section>
+
+        <nav class="project-nav" aria-label="Workbook navigation">
+          <p class="nav-kicker">Project</p>
+          <a class="nav-link" href="#overview" data-page="overview"><span class="nav-icon">⌂</span>Overview</a>
+          <a class="nav-link" href="#setup" data-page="setup"><span class="nav-icon">⚙</span>Project Setup</a>
+
+          <div class="nav-section-heading">
+            <span>Independent</span>
+            <span class="nav-count" id="tableCount">16</span>
+            <span class="nav-group-controls">
+              <button class="icon-button nav-add" id="navAdd" aria-label="Add a row to the current table" title="Add row">+</button>
+              <button class="icon-button nav-arrow" id="independentToggle" aria-expanded="true" aria-controls="independentGroups" aria-label="Collapse independent tables" title="Collapse independent tables">
+                <span class="chevron down"></span>
+              </button>
+            </span>
+          </div>
+          <div id="independentGroups" class="independent-groups"></div>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button id="exportAll" class="footer-action"><span>⇩</span>Export project JSON</button>
+          <label class="footer-action file-action"><span>⇧</span>Import project JSON<input id="importAll" type="file" accept="application/json"></label>
+          <button id="resetAll" class="footer-action"><span>↻</span>Reset independent tables</button>
         </div>
-      </section>
+      </aside>
 
-      <footer class="workspace-footer">
-        <span>Engineering aid · Results require review and acceptance by a qualified HVAC professional.</span>
-        <img src="./burns-mcdonnell-horizontal.png" alt="Burns &amp; McDonnell">
-      </footer>
-    </main>
+      <div class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="menuButton" aria-label="Open navigation" title="Open navigation">☰</button>
+          <div class="project-fields">
+            <label>Project name<input id="projectName" value="IESVE Energy Model"></label>
+            <label>Project number<input id="projectNumber" value="185021"></label>
+            <label>Submittal<input id="submittal" placeholder="Enter submittal"></label>
+            <label>Submittal date<input id="submittalDate" type="date"></label>
+          </div>
+          <div class="save-state"><span class="save-dot"></span><span id="saveText">Saved locally</span></div>
+        </header>
 
-    <div class="drawer-scrim" id="drawer-scrim"></div>
-    <aside class="project-browser" id="project-browser" aria-label="Project browser">
-      <div class="browser-header">
-        <img class="browser-logo" src="./burns-mcdonnell-stacked-white.png" alt="Burns &amp; McDonnell">
-        <button class="icon-button close-button" id="close-browser" type="button" aria-label="Close project browser" title="Close project browser">×</button>
+        <main class="main-content">
+          <div class="breadcrumb"><span>Project Browser</span><span>/</span><strong>Independent</strong><span>/</span><span id="breadcrumbTable"></span></div>
+
+          <section class="page-heading">
+            <div>
+              <span class="eyebrow" id="sheetName"></span>
+              <h1 id="tableTitle">Independent tables</h1>
+              <p id="tableDescription"></p>
+            </div>
+            <div class="source-note">
+              <span>Workbook source</span>
+              <strong id="sourceRange"></strong>
+            </div>
+          </section>
+
+          <section class="table-workspace" aria-labelledby="tableTitle">
+            <div class="table-toolbar">
+              <label class="search-field">
+                <span aria-hidden="true">⌕</span>
+                <input id="tableSearch" type="search" placeholder="Search this table" autocomplete="off">
+              </label>
+              <span class="row-summary" id="rowSummary"></span>
+              <div class="toolbar-actions">
+                <button id="resetTable" class="secondary-button" title="Restore this table from the source workbook">Reset</button>
+                <button id="addRow" class="primary-button"><span>+</span>Add row</button>
+              </div>
+            </div>
+            <div class="table-scroller" id="tableScroller">
+              <table id="dataTable">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+              <div class="empty-state" id="emptyState" hidden>
+                <strong>No matching rows</strong>
+                <span>Try a different search.</span>
+              </div>
+            </div>
+          </section>
+
+          <footer class="engineering-note"><span id="engineeringNotice"></span><img src="/static/assets/burns-mcdonnell-horizontal.png" alt="Burns &amp; McDonnell"></footer>
+        </main>
       </div>
+    </div>
 
-      <p class="browser-label">PROJECT BROWSER</p>
-
-      <label class="search-box">
-        <span aria-hidden="true"></span>
-        <input id="browser-search" type="search" placeholder="Find a calculation" autocomplete="off">
-      </label>
-
-      <nav class="tree" id="project-tree" aria-label="Workbook modules"></nav>
-
-      <div class="browser-footer">
-        <span>17 source worksheets</span>
-        <span>Map v0.1</span>
-      </div>
-    </aside>
-  </div>
-  <script src="./app.js"></script>
-</body>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/static/app.js"></script>
+  </body>
 </html>

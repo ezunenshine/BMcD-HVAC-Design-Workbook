@@ -1,0 +1,8 @@
+{
+  "name": "iesve-independent-tables",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
