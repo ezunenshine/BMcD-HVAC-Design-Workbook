@@ -27,9 +27,13 @@ jobs:
 
       - name: Prepare website
         run: |
-          mkdir _site
+          mkdir -p _site/static/assets
           cp index.html _site/index.html
-          cp -R static _site/static
+          cp styles.css _site/static/styles.css
+          cp app.js _site/static/app.js
+          cp model.js _site/static/model.js
+          cp workbook-data.json _site/static/workbook-data.json
+          cp burns-mcdonnell-horizontal.png _site/static/assets/burns-mcdonnell-horizontal.png
           touch _site/.nojekyll
 
       - uses: actions/upload-pages-artifact@v5
