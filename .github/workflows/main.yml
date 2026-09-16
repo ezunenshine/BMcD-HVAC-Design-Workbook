@@ -30,11 +30,13 @@ jobs:
           mkdir _site
           unzip -q site.zip -d _site
           test -f _site/index.html
-          test -f _site/static/styles.css
-          test -f _site/static/app.js
-          test -f _site/static/model.js
-          test -f _site/static/workbook-data.json
-          test -f _site/static/assets/burns-mcdonnell-horizontal.png
+          test -f _site/styles.css
+          test -f _site/app.js
+          test -f _site/burns-mcdonnell-ampersand.png
+          test -f _site/burns-mcdonnell-ampersand-midnight.png
+          test -f _site/burns-mcdonnell-stacked-white.png
+          test -f _site/burns-mcdonnell-heritage-badge.png
+          test -f _site/burns-mcdonnell-horizontal.png
           touch _site/.nojekyll
 
       - uses: actions/upload-pages-artifact@v5
