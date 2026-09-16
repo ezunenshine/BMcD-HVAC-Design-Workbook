@@ -8,6 +8,10 @@ Extract the full ZIP before running it. Double-click `start.bat`; it starts the 
 
 Keep the server window open while using the app. Close that window when you are finished.
 
+## Publish with GitHub Pages
+
+Upload the full contents of this folder to the repository root. In GitHub, open **Settings > Pages**, choose **Deploy from a branch**, then select `master` (or `main`) and `/ (root)`. The root `index.html` and relative asset paths are ready for a project-site URL.
+
 ## Run from a terminal
 
 ```text

@@ -1,4 +1,4 @@
-import { blankRow, cloneRows, filterRows, formatValue, parseValue, recalculate } from "/static/model.js";
+import { blankRow, cloneRows, filterRows, formatValue, parseValue, recalculate } from "./model.js";
 
 const STORAGE_PREFIX = "iesve-independent-v1:";
 const PROJECT_KEY = `${STORAGE_PREFIX}project`;
@@ -311,7 +311,7 @@ function bindEvents() {
 }
 
 async function init() {
-  const response = await fetch("/static/workbook-data.json");
+  const response = await fetch(new URL("./workbook-data.json", import.meta.url));
   if (!response.ok) throw new Error("Workbook table data could not be loaded.");
   state.data = await response.json();
   state.data.tables.forEach((table) => { state.rows[table.id] = readRows(table); });
