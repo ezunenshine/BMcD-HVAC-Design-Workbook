@@ -6,17 +6,21 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: https://ezunenshine.github.io/BMcD-HVAC-Design-Workbook/
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v6
       - uses: actions/configure-pages@v5
@@ -24,13 +28,13 @@ jobs:
       - name: Prepare website
         run: |
           mkdir _site
-          unzip -q site.zip -d _site
+          cp index.html _site/index.html
+          cp -R static _site/static
           touch _site/.nojekyll
-          printf '{"version":"%s"}\n' "$GITHUB_SHA" > _site/version.json
 
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
